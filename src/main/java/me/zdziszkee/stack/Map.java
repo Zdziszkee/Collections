@@ -1,10 +1,13 @@
 package me.zdziszkee.stack;
 
+import java.util.Objects;
+
 public class Map<K, V> {
 
     private final Node<K, V>[] entries = (Node<K, V>[]) new Node[1000];
 
     public V put(K key, V value) {
+        Objects.requireNonNull(key);
         final int index = key.hashCode() & (entries.length - 1);
         final Node<K, V> currentValue = entries[index];
         final Node<K, V> next = new Node<>(key, value, null, currentValue);
@@ -75,18 +78,6 @@ public class Map<K, V> {
             this.value = value;
             this.next = next;
             this.previous = previous;
-        }
-
-        public final K getKey() {
-            return key;
-        }
-
-        public final V getValue() {
-            return value;
-        }
-
-        public final String toString() {
-            return key + "=" + value;
         }
 
     }
