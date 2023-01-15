@@ -19,14 +19,16 @@ public class Map<K, V> {
                         final Node<K, V> nextNode = lastNode.next;
                         if (previousNode != null) {
                             previousNode.next = nextNode;
+                        } else {
+                            entries[index] = nextNode;
                         }
                         if (nextNode != null) {
                             nextNode.previous = previousNode;
                         }
                     } else {
                         lastNode.value = value;
-                        return value;
                     }
+                    return value;
                 }
                 lastNode = lastNode.next;
             } while (lastNode.next != null);
